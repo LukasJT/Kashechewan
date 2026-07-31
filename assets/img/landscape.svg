@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Stylized boreal river landscape at dawn on James Bay">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#123a33"/>
+      <stop offset="0.55" stop-color="#1c5a54"/>
+      <stop offset="1" stop-color="#2f7d74"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3d928c"/>
+      <stop offset="1" stop-color="#173f39"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#f4d79a"/>
+      <stop offset="0.6" stop-color="#e6b45c"/>
+      <stop offset="1" stop-color="#e6b45c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <circle cx="1120" cy="300" r="180" fill="url(#sun)" opacity="0.9"/>
+  <circle cx="1120" cy="300" r="70" fill="#f6e2ad" opacity="0.85"/>
+
+  <!-- distant tree line -->
+  <path d="M0 560 L0 520
+    L60 520 L75 500 L90 520 L140 520 L160 496 L180 520 L260 520 L278 502 L296 520
+    L380 520 L400 494 L420 520 L520 520 L542 498 L564 520 L660 520 L682 500 L704 520
+    L820 520 L842 496 L864 520 L980 520 L1004 500 L1028 520 L1160 520 L1184 498 L1208 520
+    L1340 520 L1366 500 L1392 520 L1520 520 L1544 500 L1568 520 L1600 520 L1600 560 Z"
+    fill="#123a33" opacity="0.7"/>
+
+  <!-- mid hills -->
+  <path d="M0 640 C 300 590, 520 620, 800 600 C 1080 580, 1320 620, 1600 590 L1600 900 L0 900 Z"
+    fill="#0f322c"/>
+
+  <!-- river -->
+  <path d="M0 720 C 400 690, 620 760, 800 730 C 1000 698, 1200 760, 1600 720 L1600 900 L0 900 Z"
+    fill="url(#water)"/>
+  <path d="M0 726 C 400 700, 640 764, 820 738" fill="none" stroke="#bfe3df" stroke-width="3" opacity="0.35"/>
+  <path d="M120 800 C 420 778, 700 820, 980 796" fill="none" stroke="#bfe3df" stroke-width="2" opacity="0.25"/>
+
+  <!-- foreground spruce silhouettes -->
+  <g fill="#0a231e">
+    <path d="M180 900 L180 720 L150 740 L180 690 L156 700 L200 620 L244 700 L220 690 L250 740 L220 720 L220 900 Z"/>
+    <path d="M320 900 L320 760 L298 774 L320 736 L302 744 L340 686 L378 744 L360 736 L382 774 L360 760 L360 900 Z"/>
+  </g>
+
+  <!-- a small skein of geese -->
+  <g stroke="#e9f3ef" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.8">
+    <path d="M980 210 l26 16 l26 -16"/>
+    <path d="M1040 232 l22 14 l22 -14"/>
+    <path d="M1092 250 l18 12 l18 -12"/>
+    <path d="M930 236 l20 12 l20 -12"/>
+  </g>
+</svg>
