@@ -40,16 +40,21 @@ references. Sources include Wikipedia, the Government of Canada (Indigenous
 Services Canada), CBC News, Queen's University Library, and a peer-reviewed
 article on the goose harvest. Please verify anything before relying on it.
 
-**Most photographs are public-domain or Creative Commons, credited in
-`credits.html`.** A handful of spots use verified, freely-licensed images
-(NASA astronaut photography, Wikimedia Commons, Archives of Ontario) because
-no community-owned photo was available; every one is captioned in place and
-listed with its source, author, and licence on the
-[Photo Credits](credits.html) page. Two spots — "Life on the land" and "the
-goose hunt" on `culture.html` — are left as illustrated **photo placeholders**
-because no freely-licensed, verifiably-located photo of either could be
-found. To add a real, community-owned photo there (or to replace any existing
-photo):
+**Every photograph is public-domain or Creative Commons, credited in
+`credits.html`.** No community-owned photo was available for any spot, so
+every photo and page-banner background is a verified, freely-licensed image
+(NASA astronaut photography, Wikimedia Commons, Archives of Ontario, the
+Canadian Museum of History) — captioned in place and listed with its source,
+author, and licence on the [Photo Credits](credits.html) page. Several are of
+**Fort Albany First Nation** rather than Kashechewan itself: the two
+communities were one until families split across the Albany River in
+1958–1961, and they still share the Fort Albany 67 reserve today, so captions
+say "Fort Albany" to stay accurate about what's pictured. Freely-licensed
+photographs of the former Fort Albany Indian Residential School also exist on
+Wikimedia Commons but were deliberately not used — see the note at the bottom
+of `credits.html` for why.
+
+To replace any existing photo with a real, community-owned one:
 
 1. Put the image file in `assets/img/` (e.g. `assets/img/goose-hunt.jpg`).
 2. Find the placeholder block in the HTML — it looks like:
