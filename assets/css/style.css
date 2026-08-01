@@ -210,6 +210,16 @@ p { margin: 0 0 1.1em; }
   max-width: 640px;
 }
 .hero.home .hero-inner { padding-block: clamp(5rem, 12vw, 9rem); }
+.hero-credit {
+  position: absolute;
+  z-index: 2;
+  right: 1rem;
+  bottom: 0.7rem;
+  margin: 0;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+.hero-credit a { color: inherit; }
 .hero h1 { color: #fff; text-shadow: 0 2px 18px rgba(0, 0, 0, 0.3); }
 .hero .eyebrow { color: var(--gold); }
 .hero p { color: rgba(255, 255, 255, 0.92); font-size: 1.16rem; }
@@ -321,11 +331,25 @@ section.tight { padding-block: clamp(2rem, 4vw, 3rem); }
    --------------------------------------------------------------------- */
 .photo {
   position: relative;
+  margin: 0;
   border-radius: var(--radius);
   overflow: hidden;
   background: linear-gradient(135deg, var(--river) 0%, var(--spruce) 100%);
 }
-.photo img { width: 100%; height: 100%; object-fit: cover; }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 1.6rem 0.9rem 0.6rem;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+.photo figcaption a { color: inherit; }
 .photo.ph {
   display: flex;
   align-items: center;

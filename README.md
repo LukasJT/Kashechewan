@@ -21,6 +21,7 @@ including **GitHub Pages** at `kashechewanfirstnation.ca`.
 | `culture.html` | Culture & Language (Omushkego, the goose hunt, Cree language) |
 | `news.html` | News & Notices (template layout) |
 | `contact.html` | Contact |
+| `credits.html` | Photo credits (source, author, licence for every photo) |
 | `404.html` | Not-found page |
 
 Shared assets live in `assets/`:
@@ -39,24 +40,34 @@ references. Sources include Wikipedia, the Government of Canada (Indigenous
 Services Canada), CBC News, Queen's University Library, and a peer-reviewed
 article on the goose harvest. Please verify anything before relying on it.
 
-**No third-party photographs are embedded.** Pulling images off a web search
-would risk copyright infringement, and a community's imagery should belong to
-the community. Instead, the site uses original SVG artwork plus clearly-marked
-**photo placeholders**. To add real, community-owned photos:
+**Most photographs are public-domain or Creative Commons, credited in
+`credits.html`.** A handful of spots use verified, freely-licensed images
+(NASA astronaut photography, Wikimedia Commons, Archives of Ontario) because
+no community-owned photo was available; every one is captioned in place and
+listed with its source, author, and licence on the
+[Photo Credits](credits.html) page. Two spots — "Life on the land" and "the
+goose hunt" on `culture.html` — are left as illustrated **photo placeholders**
+because no freely-licensed, verifiably-located photo of either could be
+found. To add a real, community-owned photo there (or to replace any existing
+photo):
 
-1. Put image files in `assets/img/` (e.g. `assets/img/river.jpg`).
-2. Find a placeholder block in the HTML — it looks like:
+1. Put the image file in `assets/img/` (e.g. `assets/img/goose-hunt.jpg`).
+2. Find the placeholder block in the HTML — it looks like:
    ```html
    <div class="photo ph ratio-4-3" aria-label="Photo placeholder"> ... </div>
    ```
 3. Replace the whole `<div class="photo ph ...">…</div>` with:
    ```html
-   <div class="photo ratio-4-3"><img src="assets/img/river.jpg" alt="Describe the photo"></div>
+   <figure class="photo ratio-4-3">
+     <img src="assets/img/goose-hunt.jpg" alt="Describe the photo">
+     <figcaption>Photo: [credit]</figcaption>
+   </figure>
    ```
-   Keep the `ratio-*` class so the framing stays consistent.
+   Keep the `ratio-*` class so the framing stays consistent, and add an entry
+   to `credits.html` if the photo isn't wholly owned by the community.
 
-Only use photos the community owns or is licensed to use, and always write
-meaningful `alt` text.
+Always write meaningful `alt` text, and only use photos the community owns or
+is licensed to use.
 
 ## Things to fill in before going live
 
