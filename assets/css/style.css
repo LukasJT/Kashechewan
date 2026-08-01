@@ -216,10 +216,13 @@ p { margin: 0 0 1.1em; }
   right: 1rem;
   bottom: 0.7rem;
   margin: 0;
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.7);
+  max-width: min(90vw, 380px);
+  text-align: right;
+  color: rgba(255, 255, 255, 0.85);
 }
 .hero-credit a { color: inherit; }
+.hero-credit .desc { display: block; font-size: 0.78rem; font-weight: 600; }
+.hero-credit .credit { display: block; font-size: 0.68rem; opacity: 0.85; margin-top: 0.15rem; }
 .hero h1 { color: #fff; text-shadow: 0 2px 18px rgba(0, 0, 0, 0.3); }
 .hero .eyebrow { color: var(--gold); }
 .hero p { color: rgba(255, 255, 255, 0.92); font-size: 1.16rem; }
@@ -343,13 +346,14 @@ section.tight { padding-block: clamp(2rem, 4vw, 3rem); }
   right: 0;
   bottom: 0;
   margin: 0;
-  padding: 1.6rem 0.9rem 0.6rem;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+  padding: 2rem 0.9rem 0.6rem;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0) 100%);
   color: rgba(255, 255, 255, 0.92);
-  font-size: 0.72rem;
   line-height: 1.4;
 }
 .photo figcaption a { color: inherit; }
+.photo figcaption .desc { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 0.2rem; }
+.photo figcaption .credit { display: block; font-size: 0.68rem; opacity: 0.85; }
 .photo.ph {
   display: flex;
   align-items: center;
