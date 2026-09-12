@@ -5,7 +5,7 @@ community on the north shore of the Albany River, near the west coast of James
 Bay, in Treaty 9 territory, Northern Ontario.
 
 The site is built with plain HTML, CSS, and a small amount of JavaScript — no
-build step and no external dependencies — so it can be hosted anywhere,
+required build step — so it can be hosted anywhere,
 including **GitHub Pages** at `kashechewanfirstnation.ca`.
 
 ---
@@ -19,7 +19,7 @@ including **GitHub Pages** at `kashechewanfirstnation.ca`.
 | `governance.html` | Governance (Chief & Council, Treaty 9, affiliations) |
 | `community.html` | Community Services (health, education, housing, emergency, relocation) |
 | `culture.html` | Culture & Language (Omushkego, the goose hunt, Cree language) |
-| `news.html` | News & Notices (template layout) |
+| `news.html` | News & Notices (resource links and an honest empty state) |
 | `contact.html` | Contact |
 | `credits.html` | Photo credits (source, author, licence for every photo) |
 | `404.html` | Not-found page |
@@ -27,7 +27,7 @@ including **GitHub Pages** at `kashechewanfirstnation.ca`.
 Shared assets live in `assets/`:
 
 - `assets/css/style.css` — the full design system (colours, type, layout)
-- `assets/js/main.js` — mobile menu + footer year
+- `assets/js/main.js` — theme preference, menu, icons, and motion
 - `assets/img/` — hand-drawn SVG artwork (`logo.svg`, `landscape.svg`, `pattern.svg`)
 
 ---
@@ -108,3 +108,20 @@ The `.nojekyll` file tells GitHub Pages to serve the files as-is.
 *This community website was scaffolded as a starting point. Content, images,
 and details should be reviewed and approved by Kashechewan First Nation before
 publication.*
+
+
+## September 2026 redesign
+
+All nine routes share a new responsive river-blue design, local photographs with
+preserved credits, Lucide icons, and daylight/nightfall themes. Appearance follows
+the system initially; the theme button saves a browser-local preference. Native
+cross-document View Transitions enhance supported browsers, while other browsers
+retain ordinary reliable navigation. Reduced-motion preferences disable movement.
+The site has no CMS: news and contact details must be supplied by the community.
+
+Google Fonts supplies Manrope and DM Sans with local system fallbacks. Lucide
+0.468.0 is vendored under its ISC licence (included in the bundle header).
+
+For a Sites deployment run `node scripts/stage-site.mjs` to stage only public
+HTML and assets in `dist/`. GitHub Pages can serve the root HTML as before.
+Run `node scripts/check-site.mjs` to check local links, anchors, images and themes.
