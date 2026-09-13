@@ -125,3 +125,14 @@ Google Fonts supplies Manrope and DM Sans with local system fallbacks. Lucide
 For a Sites deployment run `node scripts/stage-site.mjs` to stage only public
 HTML and assets in `dist/`. GitHub Pages can serve the root HTML as before.
 Run `node scripts/check-site.mjs` to check local links, anchors, images and themes.
+
+
+### Three appearance modes
+
+The header appearance selector offers **Light**, **Dark**, and **River** on all
+nine routes. Light uses the original spruce, cream, ochre, and serif direction;
+Dark is its deep spruce counterpart. River retains the September redesign's
+blue palette, rounded surfaces, Manrope headings, and photo-led composition.
+The shared content, links, mobile navigation and accessibility features are
+available in every mode. A saved choice persists across pages and reloads;
+without a saved choice, the system preference selects Light or Dark.

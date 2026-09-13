@@ -217,7 +217,7 @@ body[data-page=index] .quick-links+section{background:var(--cream)}
 to{opacity:1;transform:none;filter:none}
 }
 
-@media(min-width:1121px){.site-header{view-transition-name:site-header}
+@media(min-width:1241px){.site-header{view-transition-name:site-header}
 ::view-transition-group(site-header){animation-duration:.45s}
 }
 
@@ -229,7 +229,7 @@ to{opacity:1;transform:none;filter:none}
 .quick-links small{font-size:.75rem}
 }
 
-@media(max-width:1120px){.header-inner{min-height:84px}
+@media(max-width:1240px){.header-inner{min-height:84px}
 .nav-toggle{display:flex}
 .nav{display:none;position:absolute;left:0;right:0;top:100%;padding:20px 32px;background:var(--paper);border-bottom:1px solid var(--line);box-shadow:var(--shadow);flex-direction:column;align-items:stretch;max-height:calc(100dvh - 120px);overflow:auto}
 .nav.open{display:flex;animation:flow-in .3s var(--ease)}

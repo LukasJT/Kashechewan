@@ -1,1 +1,11 @@
-(()=>{try{const t=localStorage.getItem('kashechewan-theme');document.documentElement.dataset.theme=t==='dark'||t==='light'?t:matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch{document.documentElement.dataset.theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}})();
+/* Apply the saved appearance before styles render, including the River redesign. */
+(() => {
+  const modes = ['light', 'dark', 'river'];
+  const systemTheme = () => matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  try {
+    const saved = localStorage.getItem('kashechewan-theme');
+    document.documentElement.dataset.theme = modes.includes(saved) ? saved : systemTheme();
+  } catch {
+    document.documentElement.dataset.theme = systemTheme();
+  }
+})();

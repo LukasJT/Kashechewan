@@ -31,29 +31,33 @@
 (() => {
   'use strict';
   const root = document.documentElement, reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const theme = document.querySelector('.theme-toggle');
+  const theme = document.querySelector('.theme-select');
+  const modes = ['light', 'dark', 'river'];
+  let explicitTheme = null;
+  try { const saved = localStorage.getItem('kashechewan-theme'); if (modes.includes(saved)) explicitTheme = saved; } catch {}
   const toggle = document.querySelector('.nav-toggle'), nav = document.querySelector('.nav');
   const icons = () => window.lucide?.createIcons({attrs:{'stroke-width':1.6}});
   function themeLabel(){
     if(!theme)return;
-    const dark=root.dataset.theme==='dark';
-    theme.innerHTML=`<i data-lucide="${dark?'sun':'moon'}" aria-hidden="true"></i><span class="theme-label">${dark?'Light':'Dark'}</span>`;
-    theme.setAttribute('aria-label',`Switch to ${dark?'light':'dark'} mode`); icons();
+    theme.value = root.dataset.theme;
   }
   themeLabel();
-  theme?.addEventListener('click',()=>{
-    const apply=()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('kashechewan-theme',root.dataset.theme)}catch{}themeLabel()};
+  theme?.addEventListener('change',()=>{
+    const selected = theme.value;
+    if (!modes.includes(selected)) return;
+    explicitTheme = selected;
+    const apply=()=>{root.dataset.theme=selected;try{localStorage.setItem('kashechewan-theme',selected)}catch{}themeLabel()};
     if(document.startViewTransition&&!reduced.matches)document.startViewTransition(apply);else apply();
   });
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change',event=>{
-    try{if(localStorage.getItem('kashechewan-theme'))return}catch{}
+    if (explicitTheme) return;
     root.dataset.theme=event.matches?'dark':'light';themeLabel();
   });
   function closeMenu(focus=false){nav?.classList.remove('open');toggle?.setAttribute('aria-expanded','false');toggle?.setAttribute('aria-label','Open menu');if(focus)toggle?.focus()}
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav?.classList.contains('open'))closeMenu(true)});
   document.addEventListener('click',e=>{if(!e.target.closest('.site-header'))closeMenu()});
   nav?.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu()});
-  matchMedia('(min-width: 1121px)').addEventListener('change',e=>{if(e.matches)closeMenu()});
+  matchMedia('(min-width: 1241px)').addEventListener('change',e=>{if(e.matches)closeMenu()});
   const symbolFor=text=>/health|wellness/i.test(text)?'heart-pulse':/education|school/i.test(text)?'book-open':/housing|works/i.test(text)?'house':/emergency|flood/i.test(text)?'shield-check':/land|relocation/i.test(text)?'trees':/polic|safety/i.test(text)?'shield':/council|governance/i.test(text)?'users-round':/culture|language/i.test(text)?'feather':'newspaper';
   document.querySelectorAll('.dept, article.card, .grid-4 > a.card').forEach(el=>{
     const title=el.querySelector('h3');if(!title)return;
