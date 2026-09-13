@@ -47,7 +47,7 @@
     if (!modes.includes(selected)) return;
     explicitTheme = selected;
     const apply=()=>{root.dataset.theme=selected;try{localStorage.setItem('kashechewan-theme',selected)}catch{}themeLabel()};
-    apply();
+    if(document.startViewTransition&&!reduced.matches&&root.dataset.motion!=='paused')document.startViewTransition(apply);else apply();
   });
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change',event=>{
     if (explicitTheme) return;
