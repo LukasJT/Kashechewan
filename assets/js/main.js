@@ -36,7 +36,6 @@
   let explicitTheme = null;
   try { const saved = localStorage.getItem('kashechewan-theme'); if (modes.includes(saved)) explicitTheme = saved; } catch {}
   const toggle = document.querySelector('.nav-toggle'), nav = document.querySelector('.nav');
-  const icons = () => window.lucide?.createIcons({attrs:{'stroke-width':1.6}});
   function themeLabel(){
     if(!theme)return;
     theme.value = root.dataset.theme;
@@ -58,10 +57,5 @@
   document.addEventListener('click',e=>{if(!e.target.closest('.site-header'))closeMenu()});
   nav?.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu()});
   matchMedia('(min-width: 1441px)').addEventListener('change',e=>{if(e.matches)closeMenu()});
-  const symbolFor=text=>/health|wellness/i.test(text)?'heart-pulse':/education|school/i.test(text)?'book-open':/housing|works/i.test(text)?'house':/emergency|flood/i.test(text)?'shield-check':/land|relocation/i.test(text)?'trees':/polic|safety/i.test(text)?'shield':/council|governance/i.test(text)?'users-round':/culture|language/i.test(text)?'feather':'newspaper';
-  document.querySelectorAll('.dept, article.card, .grid-4 > a.card').forEach(el=>{
-    const title=el.querySelector('h3');if(!title)return;
-    const icon=document.createElement('span');icon.className='service-icon';icon.innerHTML=`<i data-lucide="${symbolFor(title.textContent)}" aria-hidden="true"></i>`;el.prepend(icon);
-  });
-  icons();
+  // Icons are embedded in the HTML so controls never depend on a second script.
 })();

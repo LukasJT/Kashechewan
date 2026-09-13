@@ -14,7 +14,7 @@ for(const reduced of [false,true])for(const paused of [false,true])for(const sto
   animate(keyframes,options){
    assert.ok(keyframes.every(f=>Object.keys(f).every(k=>['opacity','transform'].includes(k))),'no filter or geometry animation');
    assert.ok(options.duration<=650);assert.ok((options.delay||0)<=400);
-   const animation={cancelled:false,keyframes,options,finished:new Promise(()=>{}),cancel(){this.cancelled=true;}};animations.push(animation);return animation;
+   const animation={target:this,cancelled:false,keyframes,options,finished:new Promise(()=>{}),cancel(){this.cancelled=true;}};animations.push(animation);return animation;
   }
  }
  const root=new Element(),toggle=new Element(),header=new Element(),card=new Element(),button=new Element();
@@ -34,13 +34,14 @@ for(const reduced of [false,true])for(const paused of [false,true])for(const sto
  assert.equal(root.dataset.motion,disabled?'paused':'flow');
  assert.equal(reads,0,'initialization must not read layout');
  observers[0].callback(surfaces.map(target=>({target,isIntersecting:true})));
- assert.equal(surfaces.filter(s=>s.classes.has('liquid-visible')).length,2,'only two visible liquid surfaces may animate');
+ assert.equal(surfaces.filter(s=>s.classes.has('liquid-visible')).length,coarse?1:2,'limit ambient layers on touch and desktop');
  observers[0].callback(surfaces.map(target=>({target,isIntersecting:false})));
  assert.equal(surfaces.filter(s=>s.classes.has('liquid-visible')).length,0,'offscreen liquids must pause');
  observers[1].callback(headings.map(target=>({target,isIntersecting:true})));
- assert.equal(animations.length,disabled?0:coarse?16:32,'limit text-animation layers with no queue');
+ assert.equal(animations.length,disabled?0:coarse?4:8,'limit text-animation layers with no queue');
+ if(coarse)assert.ok(animations.every(a=>headings.includes(a.target)),'touch screens animate whole headings instead of individual words');
  observers[1].callback(headings.map(target=>({target,isIntersecting:true})));
- assert.equal(animations.length,disabled?0:coarse?16:32,'do not replay revealed headings');
+ assert.equal(animations.length,disabled?0:coarse?4:8,'do not replay revealed headings');
  assert.equal(reads,0,'reveals must not measure or reposition layout');
  if(!disabled){
   card.events.pointerenter();assert.equal(reads,1);
@@ -54,4 +55,4 @@ for(const reduced of [false,true])for(const paused of [false,true])for(const sto
  media['(prefers-reduced-motion: reduce)'].matches=true;media['(prefers-reduced-motion: reduce)'].change();assert.equal(root.dataset.motion,'paused');assert.equal(toggle.disabled,true);
  cases++;
 }
-console.log(`Verified ${cases} motion configurations: staggered text restored, 1,000-entry bursts bounded, offscreen liquids paused, pointer frames coalesced, no scroll interception or reveal layout reads.`);
+console.log(`Verified ${cases} motion configurations: 1,000-entry bursts capped at 4 mobile / 8 desktop, mobile whole-block reveals, offscreen liquids paused, pointer frames coalesced, no scroll interception or reveal layout reads.`);

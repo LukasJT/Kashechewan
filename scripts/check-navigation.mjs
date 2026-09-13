@@ -1,0 +1,13 @@
+import {readFileSync} from 'node:fs';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+const element=()=>{const classes=new Set(),events={};return {classes,events,attributes:{},classList:{toggle(c){if(classes.has(c)){classes.delete(c);return false;}classes.add(c);return true},remove:c=>classes.delete(c),contains:c=>classes.has(c)},setAttribute(k,v){this.attributes[k]=v},addEventListener(k,v){(events[k]??=[]).push(v)},fire(k,e={}){(events[k]||[]).forEach(fn=>fn(e))},focus(){this.focused=true}}};
+const toggle=element(),nav=element(),document=element(),media={};
+Object.assign(document,{documentElement:{dataset:{theme:'light'}},getElementById:()=>nav,querySelector:s=>s==='.nav-toggle'?toggle:s==='.nav'?nav:null,querySelectorAll:()=>[]});
+vm.runInNewContext(readFileSync(new URL('../assets/js/main.js',import.meta.url),'utf8'),{document,window:{},localStorage:{getItem:()=>null},matchMedia:q=>media[q]??={matches:false,addEventListener(_,fn){this.change=fn}}});
+const open=()=>{toggle.fire('click');assert.equal(toggle.attributes['aria-expanded'],'true');assert.ok(nav.classes.has('open'))};
+open();nav.fire('click',{target:{tagName:'path',closest:s=>s==='a'?{}:null}});assert.equal(toggle.attributes['aria-expanded'],'false');
+open();document.fire('keydown',{key:'Escape'});assert.ok(toggle.focused);assert.equal(toggle.attributes['aria-label'],'Open menu');
+open();document.fire('click',{target:{closest:()=>({})}});assert.ok(nav.classes.has('open'),'inside clicks keep preferences usable');document.fire('click',{target:{closest:()=>null}});assert.ok(!nav.classes.has('open'));
+open();media['(min-width: 1441px)'].change({matches:true});assert.ok(!nav.classes.has('open'));
+console.log('Verified menu open/close, SVG link clicks, Escape and restored focus, outside clicks, preference interactions, and desktop resize.');

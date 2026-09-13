@@ -27,14 +27,22 @@ html[data-motion=flow]{scroll-behavior:smooth}
 .btn:hover{transform:translateY(-3px)}
 .nav.open{animation:menu-current .3s var(--ease)}
 @keyframes menu-current{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
-::view-transition-old(root){animation:document-out .18s ease-in both}
-::view-transition-new(root){animation:document-in .36s var(--ease) both}
-@keyframes document-out{to{opacity:0;transform:translateY(-8px)}}
-@keyframes document-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+::view-transition-old(root){animation:document-out .16s ease-in both}
+::view-transition-new(root){animation:document-in .24s ease-out both}
+@keyframes document-out{to{opacity:0}}
+@keyframes document-in{from{opacity:0}to{opacity:1}}
 html[data-tab-hidden=true] .liquid-field>span{animation-play-state:paused!important}
 html[data-motion=paused] .liquid-field>span{animation-play-state:paused!important}
 html[data-motion=paused] .motion-media>img,html[data-motion=paused] .photo>img{animation:none!important;transform:none!important;transition:none!important}
 html[data-motion=paused] .card-glow{display:none}
 @media(max-width:640px){.liquid-field>span{width:320px;height:320px;opacity:.24}.liquid-field>span+span{opacity:.16}}
+/* Touch devices keep image entrances and liquid motion without scroll-linked image layers. */
+@media(pointer:coarse){
+ .motion-media>img,.photo>img{animation:none;transform:scale(1.01);transition:none}
+ .motion-media:hover>img,.photo:hover>img{transform:scale(1.01)}
+ .liquid-field>span{width:240px;height:240px;animation-name:touch-current;animation-duration:20s}
+ .liquid-field>span+span{animation-direction:alternate-reverse;animation-duration:26s}
+ @keyframes touch-current{from{transform:translate3d(-6%,0,0)}to{transform:translate3d(10%,12%,0)}}
+}
 @media(prefers-reduced-motion:reduce){.liquid-field>span,.motion-media>img,.photo>img,.reading-progress{animation:none!important;transform:none!important}.reading-progress,.card-glow{display:none}.btn:hover,.card:hover .service-icon,.dept:hover .service-icon{transform:none}.motion-word{transform:none!important;opacity:1!important}::view-transition-old(root),::view-transition-new(root){animation:none!important}}
 @media print{.liquid-field,.reading-progress,.card-glow{display:none}.motion-media>img,.photo>img{animation:none!important;transform:none!important}.motion-word{transform:none!important;opacity:1!important}}

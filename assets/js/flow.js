@@ -26,21 +26,6 @@
   });
   reduced.addEventListener('change', setMotion);
   setMotion();
-  const symbol = {index:'waves',about:'map-pin',community:'hand-heart',culture:'feather',governance:'users-round',news:'newspaper',contact:'messages-square',credits:'camera'};
-  const crumb = document.querySelector('.crumb');
-  if (crumb) {
-    const icon = document.createElement('i');
-    icon.dataset.lucide = symbol[document.body.dataset.page] || 'waves';
-    icon.setAttribute('aria-hidden','true');
-    crumb.prepend(icon);
-  }
-  document.querySelectorAll('.contact-layout .card').forEach((card,index) => {
-    const icon = document.createElement('span');
-    icon.className = 'service-icon';
-    icon.innerHTML = `<i data-lucide="${index ? 'users-round' : 'shield-check'}" aria-hidden="true"></i>`;
-    card.prepend(icon);
-  });
-  window.lucide?.createIcons({attrs:{'stroke-width':1.5}});
   const current = location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav a').forEach(a => {
     if (a.getAttribute('href').replace(/^\//,'') === current) { a.classList.add('active'); a.setAttribute('aria-current','page'); }
@@ -51,10 +36,11 @@
     root.dataset.tabHidden = String(document.hidden);
     if(document.hidden){active.forEach(animation=>animation.cancel());active.clear();}
   });
-  const maxAnimations = matchMedia('(pointer: coarse)').matches ? 16 : 32;
+  const coarse = matchMedia('(pointer: coarse)').matches;
+  const maxAnimations = coarse ? 4 : 8;
   function run(element,frames,options={}) {
     if(!enabled() || !element.animate || active.size>=maxAnimations)return null;
-    const animation=element.animate(frames,{duration:560,easing:'cubic-bezier(.16,1,.3,1)',...options});
+    const animation=element.animate(frames,{duration:420,easing:'cubic-bezier(.2,.8,.2,1)',...options});
     active.add(animation);
     animation.finished.then(()=>active.delete(animation),()=>active.delete(animation));
     return animation;
@@ -69,21 +55,23 @@
     const visibleSurfaces=new Set();
     const ambient=new IntersectionObserver(entries=>{
       entries.forEach(entry=>{if(entry.isIntersecting)visibleSurfaces.add(entry.target);else visibleSurfaces.delete(entry.target);});
-      const running=[...visibleSurfaces].slice(0,2);
+      const running=[...visibleSurfaces].slice(0,coarse ? 1 : 2);
       surfaces.forEach(surface=>surface.classList.toggle('liquid-visible',running.includes(surface)));
     },{threshold:0});
     surfaces.forEach(surface=>ambient.observe(surface));
     const seen=new WeakSet();
     const reveals=new IntersectionObserver(entries=>{
+      let sequence=0;
       entries.forEach(entry=>{
         if(!entry.isIntersecting || seen.has(entry.target))return;
         const target=entry.target;seen.add(target);reveals.unobserve(target);
         if(!enabled())return;
         const words=target.querySelectorAll('.motion-word');
-        if(words.length && words.length<=12 && active.size+words.length<=maxAnimations){
-          words.forEach((word,index)=>run(word,[{opacity:0,transform:'translate3d(0,18px,0)'},{opacity:1,transform:'translate3d(0,0,0)'}],{delay:index*35,fill:'backwards'}));
+        if(!coarse && words.length && words.length<=4 && active.size+words.length<=maxAnimations){
+          words.forEach((word,index)=>run(word,[{opacity:.35,transform:'translate3d(0,10px,0)'},{opacity:1,transform:'translate3d(0,0,0)'}],{delay:index*25,fill:'backwards'}));
         }else{
-          run(target,[{opacity:.15,transform:'translate3d(0,16px,0)'},{opacity:1,transform:'translate3d(0,0,0)'}]);
+          // Mobile reveals each text block as one layer, keeping the word layout untouched.
+          run(target,[{opacity:.4,transform:'translate3d(0,8px,0)'},{opacity:1,transform:'translate3d(0,0,0)'}],{delay:Math.min(sequence++*25,75)});
         }
       });
     },{threshold:0,rootMargin:'0px 0px -16px 0px'});
@@ -91,6 +79,14 @@
       if(!heading.closest('.card,.dept'))reveals.observe(heading);
     });
     document.querySelectorAll('.dept,.card,.history-path article,.notice-links>a,.service-directory>a,.landing-description,.story-summary,.culture-copy>p,.life-heading>p,.prose>p,.t-item').forEach(el=>reveals.observe(el));
+    if(coarse){
+      const images=new IntersectionObserver(entries=>entries.forEach(entry=>{
+        if(!entry.isIntersecting)return;
+        images.unobserve(entry.target);
+        run(entry.target,[{opacity:.85,transform:'scale(1.035)'},{opacity:1,transform:'scale(1.01)'}],{duration:600});
+      }),{threshold:.1});
+      document.querySelectorAll('.motion-media>img,.photo>img').forEach(el=>images.observe(el));
+    }
     const anchors=[...document.querySelectorAll('.page-index a[href^="#"],.chapter-nav a[href^="#"]')];
     const sections=new IntersectionObserver(entries=>{
       const visible=entries.find(entry=>entry.isIntersecting);if(!visible)return;
