@@ -47,7 +47,7 @@
     if (!modes.includes(selected)) return;
     explicitTheme = selected;
     const apply=()=>{root.dataset.theme=selected;try{localStorage.setItem('kashechewan-theme',selected)}catch{}themeLabel()};
-    if(document.startViewTransition&&!reduced.matches&&root.dataset.motion!=='paused')document.startViewTransition(apply);else apply();
+    apply();
   });
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change',event=>{
     if (explicitTheme) return;
@@ -64,8 +64,4 @@
     const icon=document.createElement('span');icon.className='service-icon';icon.innerHTML=`<i data-lucide="${symbolFor(title.textContent)}" aria-hidden="true"></i>`;el.prepend(icon);
   });
   icons();
-  document.querySelectorAll('.btn, .quick-links a').forEach(el=>el.addEventListener('pointerdown',e=>{
-    if(reduced.matches||root.dataset.motion==='paused')return;
-    const box=el.getBoundingClientRect(),r=document.createElement('span');r.className='ripple';r.style.left=`${e.clientX-box.left}px`;r.style.top=`${e.clientY-box.top}px`;el.append(r);r.addEventListener('animationend',()=>r.remove(),{once:true});
-  }));
 })();
