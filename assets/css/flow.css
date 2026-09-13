@@ -175,3 +175,44 @@ html[data-motion=paused]::view-transition-old(root),html[data-motion=paused]::vi
 @media(max-width:560px){body{font-size:1rem}.wrap{width:calc(100% - 40px)}.header-inner{width:calc(100% - 24px);gap:8px;min-height:76px}.brand .name{font-size:1.1rem}.brand .sub{font-size:.75rem;letter-spacing:.08em}.brand .mark{display:none}.header-actions{gap:5px}.motion-toggle{width:40px;min-width:40px;height:44px;padding:9px}.theme-select{width:83px;font-size:.875rem;min-height:44px;padding-left:10px}.nav-toggle{min-width:40px;width:40px}.hero{margin:8px 8px 0;border-radius:25px 25px 50px 25px}.hero .wrap{width:calc(100% - 40px)}.hero-inner{padding-block:48px 40px}.hero h1{font-size:clamp(3.1rem,12.8vw,4.6rem);margin-bottom:24px;line-height:1.06}.hero .eyebrow{font-size:.8125rem;letter-spacing:.07em;gap:8px}.hero .eyebrow:before{width:18px}.hero-inner>p:not(.eyebrow){font-size:1.0625rem}.hero .btn{font-size:.875rem;padding:14px 18px}.hero-bottom,.hero-bottom a{font-size:.8125rem}.hero-bottom{padding-bottom:26px}.quick-links{margin-top:20px;box-shadow:none;border:1px solid var(--line)}.quick-links a{padding:19px 14px;gap:11px}.quick-links a>svg{padding:0;background:none;border-radius:0;width:22px;height:22px}.quick-links strong{font-size:.875rem;line-height:1.5}.quick-links small{display:none}.section-head{margin-bottom:32px}h2{font-size:2.6rem}.home-services .dept:first-child,.home-services .dept:last-child{grid-column:auto}.home-services .dept:first-child h3{font-size:1.75rem}.card,.dept,:root:is([data-theme=light],[data-theme=dark]) .card,:root:is([data-theme=light],[data-theme=dark]) .dept{padding:28px;border-radius:24px}.stat{padding-inline:16px}.stat .num{font-size:2.3rem}.stat .label{font-size:.875rem}.page-banner{margin:8px 8px 0;border-radius:24px 24px 55px 24px}.page-banner h1{font-size:clamp(2.8rem,11vw,3.8rem)}.page-banner p{font-size:1.0625rem}.page-banner .wrap{gap:18px;padding-block:30px 55px}.page-index a{padding:9px 13px}.contact-layout>div:first-child>h2{font-size:3rem}.editorial-layout .prose .grid-3{grid-template-columns:1fr}.editorial-layout .prose .grid-3>*:last-child{grid-column:auto}.notice-empty{padding:28px}.split .photo,.split .photo:first-child{border-radius:24px 60px 24px 24px!important}.footer-grid{gap:30px 22px}.site-footer{border-radius:36px 36px 0 0}.flow-field{opacity:.2}.page-banner .crumb{font-size:.875rem}.flow-field span{inset:-15%}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.photo img,.hero .landscape{transform:none!important}.flow-field span{animation:none!important}::view-transition-old(root),::view-transition-new(root){animation:none!important}}
 @media print{.flow-field,.reading-progress,.motion-toggle{display:none!important}.hero,.page-banner{margin:0;border-radius:0;min-height:0}.page-banner .wrap{display:block}.page-banner h1,.page-banner p{color:#111}.contact-layout>div:first-child{position:static}.site-footer{display:none}}
+
+/* Identity and resilient native appearance picker: reserve text and chevron space. */
+.theme-picker{position:relative;display:inline-flex;flex:0 0 auto;min-width:0}
+.theme-picker:after{content:'';position:absolute;right:1.05em;top:calc(50% - .3em);width:.45em;height:.45em;border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);transform:rotate(45deg);pointer-events:none}
+.theme-picker .theme-select{appearance:none;-webkit-appearance:none;box-sizing:border-box;width:8.25em;min-width:8.25em;max-width:none;height:auto;min-height:48px;padding:.8em 2.6em .8em 1.1em;font:600 1rem/1.4 var(--sans);text-align:left;text-indent:0;letter-spacing:normal;white-space:nowrap;overflow:visible;border:1px solid var(--line-strong);border-radius:50px;background:var(--paper);color:var(--ink);flex-shrink:0}
+.theme-select option{font:inherit;background:var(--paper);color:var(--ink)}
+.theme-picker .theme-select:hover{background:var(--accent-soft)}
+.header-actions{flex-shrink:0;gap:10px}
+.brand .mark{display:block;width:66px;height:66px;object-fit:contain;flex:0 0 auto;background:#fff;border-radius:50%;padding:3px;border:1px solid #e0e4e4}
+.brand{gap:14px;min-width:0}
+.brand-text{min-width:0}
+.header-inner{min-height:102px}
+.footer-brand .mark{width:112px;height:112px;object-fit:contain;padding:5px;border-radius:50%;background:#fff}
+.credits-gallery>.logo-credit{grid-column:1/-1;display:grid;grid-template-columns:160px minmax(0,1fr);gap:36px;align-items:center}
+.credits-gallery>.logo-credit>img{width:160px;height:160px;max-height:none;object-fit:contain;background:#fff;border-radius:50%;padding:6px}
+.logo-credit h2{font-size:2.5rem;border:0;padding:0;margin:0 0 18px}
+.logo-credit p{max-width:850px}
+@media(min-width:1241px) and (max-width:1440px){
+ .nav-toggle{display:flex}
+ .nav{display:none;position:absolute;left:0;right:0;top:100%;padding:20px 32px;background:var(--paper);border-bottom:1px solid var(--line);box-shadow:var(--shadow);flex-direction:column;align-items:stretch;max-height:calc(100dvh - 130px);overflow:auto;border-radius:0 0 28px 28px}
+ .nav.open{display:flex;animation:flow-in .3s var(--ease)}
+ .nav a{font-size:1rem;padding:14px 18px;border-radius:14px}
+ .nav a:after{display:none}
+ .nav .mobile-contact{display:block}
+}
+@media(max-width:700px){
+ html{scroll-padding-top:190px}
+ .header-inner{width:calc(100% - 32px);display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding-block:12px}
+ .brand{justify-content:center;flex:1 0 100%;max-width:100%;gap:12px}
+ .brand .mark{display:block;width:58px;height:58px}
+ .brand .name{font-size:1.4rem;line-height:1.15;overflow-wrap:anywhere}
+ .brand .sub{font-size:.75rem;letter-spacing:.16em}
+ .header-actions{justify-content:center;flex-wrap:wrap;gap:10px;max-width:100%}
+ .motion-toggle,.nav-toggle{width:48px;min-width:48px;min-height:48px}
+ .nav-toggle span{display:none}
+ .header-contact.btn{display:none}
+ .nav{max-height:calc(100dvh - 185px)}
+ .page-banner .crumb{flex-wrap:wrap}
+ .credits-gallery>.logo-credit{grid-template-columns:1fr;gap:24px}
+}
+@media(prefers-reduced-motion:reduce){.theme-picker:after{transition:none}}

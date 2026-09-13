@@ -28,9 +28,15 @@ Shared assets live in `assets/`:
 
 - `assets/css/style.css` — the full design system (colours, type, layout)
 - `assets/js/main.js` — theme preference, menu, icons, and motion
-- `assets/img/` — hand-drawn SVG artwork (`logo.svg`, `landscape.svg`, `pattern.svg`)
+- `assets/img/` — official community logo and attributed photography
+- `assets/css/flow.css` — current visual system and responsive appearance picker
+- `assets/js/flow.js` — progressive motion and the pause preference
 
 ---
+
+## Community identity
+
+This is a website concept for community review. The official logo is reproduced unchanged from [Mushkegowuk Council](https://mushkegowuk.ca/nations/), using its [300 × 300 PNG](https://mushkegowuk.ca/wp-content/uploads/2024/11/6.png). It is displayed on a white backing for clarity in each appearance mode. The logo is not included in the photographs’ open licences; rights remain with their holders. The earlier illustrative `logo.svg` is unused.
 
 ## About the content and images
 

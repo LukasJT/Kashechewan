@@ -57,7 +57,7 @@
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav?.classList.contains('open'))closeMenu(true)});
   document.addEventListener('click',e=>{if(!e.target.closest('.site-header'))closeMenu()});
   nav?.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu()});
-  matchMedia('(min-width: 1241px)').addEventListener('change',e=>{if(e.matches)closeMenu()});
+  matchMedia('(min-width: 1441px)').addEventListener('change',e=>{if(e.matches)closeMenu()});
   const symbolFor=text=>/health|wellness/i.test(text)?'heart-pulse':/education|school/i.test(text)?'book-open':/housing|works/i.test(text)?'house':/emergency|flood/i.test(text)?'shield-check':/land|relocation/i.test(text)?'trees':/polic|safety/i.test(text)?'shield':/council|governance/i.test(text)?'users-round':/culture|language/i.test(text)?'feather':'newspaper';
   document.querySelectorAll('.dept, article.card, .grid-4 > a.card').forEach(el=>{
     const title=el.querySelector('h3');if(!title)return;
