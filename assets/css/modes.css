@@ -1,0 +1,54 @@
+/* River uses the full redesign in style.css. Light and Dark recall the original
+   spruce / ochre / serif visual identity without losing the shared accessible UI. */
+:root[data-theme="light"] {
+  --paper:#fffdf8; --cream:#f8f3e9; --sand:#efe7d6;
+  --ink:#211f1a; --muted:#5d574c; --spruce:#143a31;
+  --spruce-deep:#0d241f; --river:#1f6f6b; --river-light:#3d928c;
+  --ochre:#945518; --gold:#e6b45c; --line:#dcded1; --line-strong:#a7b6a7;
+  --glass:#fffdf8f2; --accent-soft:#e5eee7; --radius:8px;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+}
+:root[data-theme="dark"] {
+  --paper:#142e28; --cream:#0d211c; --sand:#102920;
+  --ink:#f0f2e9; --muted:#b9c9bc; --spruce:#dcecdf;
+  --spruce-deep:#081a14; --river:#9bd8c6; --river-light:#7cb9a6;
+  --ochre:#e6b45c; --gold:#edc785; --line:#314e40; --line-strong:#587362;
+  --glass:#10251ef2; --accent-soft:#203d31; --radius:8px;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+}
+:root[data-theme="river"] { color-scheme:light; }
+:root:is([data-theme="light"],[data-theme="dark"]) h1,
+:root:is([data-theme="light"],[data-theme="dark"]) h2,
+:root:is([data-theme="light"],[data-theme="dark"]) h3 { letter-spacing:-.025em; }
+:root:is([data-theme="light"],[data-theme="dark"]) .hero:before {
+  background:linear-gradient(90deg,#0d241ff0,#143a31a0 55%,#143a3140),linear-gradient(0deg,#0d241fba,transparent 50%);
+}
+:root:is([data-theme="light"],[data-theme="dark"]) .hero h1 em { color:#e6b45c; }
+:root:is([data-theme="light"],[data-theme="dark"]) .hero .eyebrow { color:#e6b45c; }
+:root:is([data-theme="light"],[data-theme="dark"]) .hero-place>span:last-child { color:#e6d2ad; }
+:root:is([data-theme="light"],[data-theme="dark"]) .band-spruce,
+:root:is([data-theme="light"],[data-theme="dark"]) .page-banner { background:#143a31; }
+:root:is([data-theme="light"],[data-theme="dark"]) .page-banner.has-photo:after { background:linear-gradient(90deg,#0d241fed,#143a3180); }
+:root:is([data-theme="light"],[data-theme="dark"]) .site-footer { background:#0d241f; }
+:root:is([data-theme="light"],[data-theme="dark"]) .btn-primary { background:#e6b45c; color:#302312; }
+:root:is([data-theme="light"],[data-theme="dark"]) .btn-primary:hover { background:#f2c67c; }
+:root:is([data-theme="light"],[data-theme="dark"]) .btn { border-radius:8px; }
+:root:is([data-theme="light"],[data-theme="dark"]) .card,
+:root:is([data-theme="light"],[data-theme="dark"]) .dept,
+:root:is([data-theme="light"],[data-theme="dark"]) .quick-links,
+:root:is([data-theme="light"],[data-theme="dark"]) .split .photo { border-radius:8px; }
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; border:0; }
+.theme-picker { display:flex; align-items:center; flex-shrink:0; }
+.theme-select { font:600 .875rem/1.4 var(--sans); color:var(--ink); background:var(--paper); border:1px solid var(--line-strong); border-radius:24px; min-height:44px; width:96px; padding:10px 8px 10px 14px; cursor:pointer; }
+.theme-select:focus-visible { outline:3px solid var(--ochre); outline-offset:4px; }
+.theme-select:hover { background:var(--accent-soft); }
+@media(max-width:560px) {
+  .theme-select { font-size:1rem; width:86px; padding-left:10px; }
+  .brand .mark { width:32px; height:32px; }
+  .brand .name { font-size:1rem; }
+  .header-actions { gap:6px; }
+}
+@media(max-width:360px) {
+  .header-inner { width:calc(100% - 24px); }
+  .brand .mark { display:none; }
+}
